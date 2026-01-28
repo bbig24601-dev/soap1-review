@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <title>เขียนรีวิว | สูตรสบู่สมุนไพร</title>
+    <style>
+        body {
+            font-family: Tahoma, sans-serif;
+            background-color: #f4f9f4;
+            margin: 0;
+        }
+        header {
+            background-color: #4CAF50;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+        section {
+            background-color: white;
+            max-width: 600px;
+            margin: 30px auto;
+            padding: 20px;
+            border-radius: 8px;
+        }
+        label {
+            font-weight: bold;
+            color: #2e7d32;
+        }
+        input, select, textarea {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            margin-bottom: 10px;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px;
+            width: 100%;
+            font-size: 16px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>📝 เขียนรีวิวสินค้า</h1>
+</header>
+
+<section>
+    <form id="reviewForm">
+        <label>ชื่อผู้รีวิว</label>
+        <input type="text" id="name" required>
+
+        <label>สบู่ที่ใช้</label>
+        <select id="product" required>
+            <option value="">-- กรุณาเลือก --</option>
+            <option>สบู่มะขาม</option>
+            <option>สบู่ขมิ้น</option>
+            <option>สบู่ว่านหางจระเข้</option>
+        </select>
+
+        <label>คะแนนความพึงพอใจ</label>
+        <select id="rating" required>
+            <option value="">-- ให้คะแนน --</option>
+            <option>⭐️⭐️⭐️⭐️⭐️</option>
+            <option>⭐️⭐️⭐️⭐️</option>
+            <option>⭐️⭐️⭐️</option>
+            <option>⭐️⭐️</option>
+            <option>⭐️</option>
+        </select>
+
+        <label>ความคิดเห็น</label>
+        <textarea id="comment" rows="4" required></textarea>
+
+        <button type="submit">ส่งรีวิว</button>
+    </form>
+</section>
+
+<!-- 🔽 SCRIPT อยู่ตรงนี้แล้ว -->
+<script>
+document.getElementById("reviewForm").addEventListener("submit", function(e) {
+    e.preventDefault();
+
+    const review = {
+        name: document.getElementById("name").value,
+        product: document.getElementById("product").value,
+        rating: document.getElementById("rating").value,
+        comment: document.getElementById("comment").value
+    };
+
+    let reviews = JSON.parse(localStorage.getItem("reviews")) || [];
+    reviews.push(review);
+    localStorage.setItem("reviews", JSON.stringify(reviews));
+
+    alert("ขอบคุณสำหรับรีวิว ❤️");
+    window.location.href = "review_list.html";
+});
+</script>
+
+</body>
+</html>
+
+
+

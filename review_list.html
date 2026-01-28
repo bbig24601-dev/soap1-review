@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <title>ดูรีวิวจากลูกค้า</title>
+    <style>
+        body {
+            font-family: Tahoma, sans-serif;
+            background-color: #f4f9f4;
+            margin: 0;
+        }
+        header {
+            background-color: #4CAF50;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+        section {
+            max-width: 800px;
+            margin: 20px auto;
+        }
+        .review-card {
+            background-color: white;
+            padding: 15px;
+            margin-bottom: 10px;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>💬 รีวิวจากลูกค้า</h1>
+</header>
+
+<section id="reviewContainer"></section>
+
+<!-- 🔽 SCRIPT อยู่ตรงนี้แล้ว -->
+<script>
+const reviews = JSON.parse(localStorage.getItem("reviews")) || [];
+const container = document.getElementById("reviewContainer");
+
+if (reviews.length === 0) {
+    container.innerHTML = "<p style='text-align:center;'>ยังไม่มีรีวิว</p>";
+}
+
+reviews.forEach(r => {
+    const div = document.createElement("div");
+    div.className = "review-card";
+    div.innerHTML = `
+        <h3>${r.name}</h3>
+        <p>🧼 ${r.product}</p>
+        <p>${r.rating}</p>
+        <p>${r.comment}</p>
+    `;
+    container.appendChild(div);
+});
+</script>
+
+</body>
+</html>
+
+
